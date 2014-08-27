@@ -1,25 +1,12 @@
 #!/usr/bin/perl
 
+# extract lines between keyword pairs
+# show line numbers and paring file name
+
 while (<>){
-	#print "$ARGV \n" if ($. == 1);
-	if (m#\|\|\|new#i .. m#\+\+\+new#i){
-		print "$ARGV \n" if (m#\|\|\|new#i);
-		print "$. : ", $_; #print if m#\|\|\|new#i .. m#\+\+\+new#i;
-		#print "$ARGV" if eof;
+	if (m#\|\|\|new#i .. m#\+\+\+new#i){ # show file name
+		print "$ARGV \n" if (m#\|\|\|new#i); # extract content
+		print "$. : ", $_; # print line number
 	}
-	#print "$ARGV \n" if eof;
-	close ARGV if eof;
+	close ARGV if eof; # reset line counter for each new file
 }
-
-#while (<>){
-#	print "line $. : ", #print if m#\|\|\|new#i .. m#\+\+\+new#i;
-#	print if m#\|\|\|new#i .. m#\+\+\+new#i;
-#	#print "$ARGV" if eof;
-#	close ARGV if eof;
-#}
-
-
-
-#echo $1
-#s/|||new(.*?)+++new/$1/s; #notice the trailing slash
-#print;
